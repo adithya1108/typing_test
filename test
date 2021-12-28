@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test</title>
+    <script>
+        var fruits = ["test", "Orange", " apple", " mango", " banana", " grape", " test", " Orange", " apple", " mango", " banana",
+            " grape", " mango", " banana", " grape", " test", " Orange", " apple", " mango", " apple", " mango", " banana", " grape", " test", " Orange", " apple", " mango", " banana",
+            " grape", " mango", " banana", " grape", " test", " Orange", " apple", " mango"
+        ];
+        var listA = ["test"];
+
+        function uniKeyCode(event) {
+            document.querySelector(".aadi").style.color = "blue";
+            var key = event.keyCode;
+            if (key == 32) {
+                var add = document.querySelector(".aadi").value;
+                listA.push(add);
+                var i = listA.length;
+                document.querySelector("#test").innerHTML = i;
+                document.querySelector("#demo").innerHTML = document.querySelector("#demo").innerHTML + add;
+                document.querySelector(".aadi").value = "";
+            } else {
+                return true;
+            }
+        }
+
+        function timer() {
+            var myVar = setInterval(myTimer, 1000);
+            var time = document.getElementById("time").value;
+
+            function myTimer() {
+                document.querySelector(".aadi").disabled = false;
+                document.querySelector("#start").disabled = true;
+                var x = document.getElementById("timer").innerHTML;
+                var n = parseInt(x);
+                if (n >= time) {
+                    document.querySelector(".aadi").disabled = true;
+
+                } else {
+                    document.getElementById("timer").innerHTML = n + 1;
+                }
+            }
+
+        }
+
+        function result() {
+            var time = document.getElementById("time").value;
+
+            var m = 0;
+            for (a = 1; a <= listA.length; a++) {
+                if (listA[a] == fruits[a]) {
+                    m++;
+                } else {
+                    continue;
+                }
+            }
+            var accuracy = (60 / time) * m;
+
+            document.getElementById("result").innerHTML = "your typing speed accuracy is " + accuracy + " WPM";
+            document.getElementById("m").innerHTML = m;
+        }
+    </script>
+    <style>
+        input:focus {
+            outline: none;
+            border-bottom: dotted;
+        }
+    </style>
+</head>
+
+<body style="width:70%;text-align: center;margin:50px auto">
+    <h1 style="color:crimson;text-align: center;">TYPING TEST</h1>
+    <div>
+        <div style="color:red;float:left">
+            <label for="cars">Choose time in sec:</label>
+            <select name="time" id="time">
+            <option value=15>15</option>
+            <option value=30>30</option>
+            <option value=60>60</option>
+            <option value=90>90</option>
+            <option value=120>120</option>
+            <option value=300>300</option>
+        </select>
+        </div>
+        <div style="color:red; float:right; font-size: xx-large;">
+            <p id="timer">0</p>
+        </div>
+    </div>
+    <br>
+    <p id="test"></p>
+
+    <div>
+        <p id="main" style="color:red; width:50%"> Orange apple mango banana grape test Orange apple mango banana grape mango banana grape test Orange apple mango apple mango banana grape test Orange apple mango banana grape mango banana grape test Orange apple mango</p>
+        <br>
+        <input type="button" id="start" onclick="timer()" value="start">
+        <span id="demo" style="border-bottom: dotted;width:50%"></span>
+        <input type="text" class="aadi" id="aadi" onkeydown="uniKeyCode(event)" style="font-size: 30px;border:none" disabled>
+    </div>
+    <h1 id="result"></h1>
+    <input type="button" value="get result" onclick="result()">
+    <p id="m" style="color:green"></p>
+</body>
+
+</html>
